@@ -4,7 +4,7 @@ var gameEnded = false;
 
 // Don't change this
 const TMT_VERSION = {
-	tmtNum: "2.2.8",
+	tmtNum: "2.2.7.1",
 	tmtName: "Uprooted"
 }
 
@@ -58,12 +58,6 @@ function getNextAt(layer, canMax=false, useType = null) {
 	} else {
 		return new Decimal(0)
 	}}
-
-function softcap(value, cap, power = 0.5) {
-	if (value.lte(cap)) return value
-	else
-		return value.pow(power).times(cap.pow(decimalOne.sub(power)))
-}
 
 // Return true if the layer should be highlighted. By default checks for upgrades only.
 function shouldNotify(layer){
@@ -281,7 +275,7 @@ VERSION.withName = VERSION.withoutName + (VERSION.name ? ": " + VERSION.name : "
 function autobuyUpgrades(layer){
 	if (!tmp[layer].upgrades) return
 	for (id in tmp[layer].upgrades)
-		if (isPlainObject(tmp[layer].upgrades[id]) && (layers[layer].upgrades[id].canAfford === undefined || layers[layer].upgrades[id].canAfford() === true))
+		if (isPlainObject(tmp[layers].upgrades[id]) && (layers[layer].upgrades[id].canAfford === undefined || layers[layer].upgrades[id].canAfford() === true))
 			buyUpg(layer, id) 
 }
 
